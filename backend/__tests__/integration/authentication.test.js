@@ -31,10 +31,11 @@ describe('Authentication', () => {
 
     const response = await request(app).post('/auth/login').send({
       username: user.username,
-      pincode: '123'
+      // wrong password
+      pincode: '123<---'
     })
 
-    expect(response.status).toBe(200)
+    expect(response.status).toBe(401)
   })
 
   it('should return a JWT when authenticated', async () => {

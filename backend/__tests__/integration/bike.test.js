@@ -9,13 +9,11 @@ describe('API integration tests', () => {
     await truncate()
   })
 
-  // TODO: add authentication
   it('should list all bikes (without authentication)', async () => {
     const response = await request(app).get('/cyclist/list_bikes')
     expect(response.status).toBe(200)
   })
 
-  // TODO: add authentication
   it('should mark a bike as rent by given user (without authentication)', async () => {
     const response = await request(app).put('/cyclist/rent_bike').send({
       userId: 2,
@@ -24,7 +22,6 @@ describe('API integration tests', () => {
     expect(response.status).toBe(200)
   })
 
-  // TODO: add authentication
   it('should mark a bike as returned(available again) (without authentication)', async () => {
     const response = await request(app).put('/cyclist/return_bike').send({
       userId: 2,
@@ -33,12 +30,8 @@ describe('API integration tests', () => {
     expect(response.status).toBe(200)
   })
 
-  // TODO: add authentication
   it(' (admin) should list all bikes', async () => {
     const response = await request(app).get('/admin/list_bikes')
     expect(response.status).toBe(200)
   })
-
-
-
 })
