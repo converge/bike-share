@@ -1,0 +1,105 @@
+
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+/* import font */
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,600,700');
+
+/* CSS RESET */
+html, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+u, i, center,
+dl, dt, dd,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 16px;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 400;
+	vertical-align: baseline;
+}
+ol, ul, li {
+	margin: 0;
+  padding:0;
+}
+b {
+	font-weight: 700;
+}
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	background-color: #F1F1F1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+form input {
+	font-weight: 400;
+	font-size: 1.4rem;
+	margin-top: 15px;
+	color: #192D40;
+}
+
+button {
+	margin-top: 30px;
+	width: 232px;
+	height: 54px;
+	background-color: #192D40;
+	border: none;
+  border-radius: 45px;
+	box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
+	transition: all 0.3s ease 0s;
+	cursor: pointer;
+	outline: none;
+	color: white;
+	font-weight: 700;
+	font-size: 1rem;
+}
+
+button:hover {
+	background-color: #5FCAE4;
+  color: #fff;
+  transform: translateY(-3px);
+}
+
+a {
+	font-size: 0.9rem;
+	color: black;
+	text-decoration: none;
+}

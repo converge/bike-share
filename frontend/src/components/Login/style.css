@@ -1,0 +1,112 @@
+.login-container {
+  display: grid;
+  grid-template-columns: 1fr minmax(414px, 1111px) 1fr;
+}
+
+.login-wrapper {
+  grid-column: 2;
+  height: 100vh;
+  grid-template-rows: auto 50vh;
+  background-color: #EE2D3E;
+}
+
+.logo-box {
+  grid-row-start: 1;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  height: 300px;
+  background: url('../../imgs/node_bike-logo.png');
+  background-color: #fff;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.login-box {
+  grid-row-start: 2;
+  margin-top: 50px;
+}
+
+/*
+ * Form
+ */
+.login-form input {
+  color: #fff;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  border-bottom: 1px solid #fff;
+}
+
+.form-sending {
+  padding-top: 10px;
+}
+
+.field-validation , .form-sending.error {
+  margin-top: 20px;
+  color: #FFF2AF;
+}
+
+/*
+ * Responsive
+ * tablet and mobile landscape
+ */
+ @media (min-width: 640px) {
+  .login-container {
+  }
+
+  .login-wrapper {
+    display: grid;
+    background-color: #f1f1f1;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+
+  }
+  .logo-box {
+    grid-column: 1;
+    border-radius: 40px 0 0 40px;
+    height: 500px;
+    padding: 40px;
+    margin-top: 40px;
+    background: url('../../imgs/node_bike-logo-big.png');
+    background-size: 30vw;
+    background-color: #fff;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  .login-box {
+    grid-row-start: 1;
+    grid-column: 2;
+    height: 500px;
+    background-color: #EE2D3E;
+    border-radius: 0 40px 40px 0px;
+    padding: 40px;
+    margin-top: 40px;
+    align-content: center;
+    display: grid;
+  }
+
+  .login-form {
+    align-items: center;
+  }
+  
+}
+
+/*
+ * desktop 
+ */
+@media (min-width: 768px) {
+
+}
+
+/*
+ * desktop 
+ */
+@media (min-width: 1024px) {
+}
+
+/*
+ * desktop WIDE
+ */
+@media (min-width: 1250px) {
+}
+
