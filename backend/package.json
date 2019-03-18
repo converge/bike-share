@@ -1,0 +1,30 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "pretest": "NODE_ENV=test npx sequelize db:migrate",
+    "test": "NODE_ENV=test jest --verbose",
+    "posttest": "NODE_ENV=test npx sequelize db:migrate:undo:all"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "dotenv": "^7.0.0",
+    "faker": "^4.1.0",
+    "jest": "^24.5.0",
+    "sequelize-cli": "^5.4.0",
+    "supertest": "^4.0.2"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "jsonwebtoken": "^8.5.0",
+    "sequelize": "^5.1.0",
+    "sqlite": "^3.0.2"
+  }
+}
