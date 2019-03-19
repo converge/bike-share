@@ -5,6 +5,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "formik": "^1.5.1",
+    "google-map-react": "^1.1.2",
     "helmet": "^3.16.0",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
