@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { logout } from '../../services/auth'
 import GoogleMap from './googleMap'
 import './style.css'
+import api from '../../services/api'
 
 class SharedBike extends Component {
 
@@ -26,7 +27,8 @@ class SharedBike extends Component {
           </div>
 
           <div className="map-share">
-           <GoogleMap center={{ lat: 59.95, lng: 30.33 }} zoom={ 7 } />
+           {/* <GoogleMap center={{ lat: 59.95, lng: 30.33 }} zoom={ 7 } /> */}
+           <GoogleMap />
           </div>
           <div className="bottom-links">
             <button onClick={this.handleLogout}>Logout</button>

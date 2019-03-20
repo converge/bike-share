@@ -1,42 +1,67 @@
 import React, { Component } from 'react'
-import GoogleMapReact from 'google-map-react'
+import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react'
+import api from '../../services/api'
 import './style.css'
-
-class Marker extends React.Component {
-  constructor(props) {
-    super(props)
-  }
-
-  render() {
-    return(
-      <div>
-        <div className="SuperAwesomePin">www1</div>
-      </div>
-    )
-  }
-}
 
 class GoogleMap extends Component {
 
-
-  render() {  
-    return (
-      <div style={{ height: '100vh', width: '100%' }}>
-      <GoogleMapReact
-        bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_API_KEY }}
-        defaultCenter={this.props.center}
-        defaultZoom={this.props.zoom}
-      >
-        {/* <AnyReactComponent
-          lat={59.955413}
-          lng={30.337844}
-          text={'Kreyser Avrora'}
-        /> */}
-        <Marker lat={this.props.center.lat} lng={this.props.center.lng} />
-      </GoogleMapReact>
-    </div>
-    )
+  state = {
+    showingInfoWindow: true,
+    activeMarker: {},
+    markers: {}
   }
-}
 
-export default GoogleMap
+  componentDidMount = async () => {
+    const response = await api.get('/cyclist/list_bikes')
+    if (response.status === 200) {
+      this.setState({
+        markers: response.data
+      })
+    }
+  }
+
+  onMarkerClick = (props, marker, e) => {
+    console.log('ok')
+    this.setState({
+      showingInfoWindow: true,
+      activeMarker: marker
+    })
+  }
+
+  onMarkerClick2 = () => {
+    console.log('ok2')
+  }
+
+
+  render() {
+      return (
+        <div>
+          <Map google={this.props.google}
+            center={{ lat: 46.903480, lng: 6.781185 }}
+            zoom={18}
+            style={{ width: '100%', height: '100%', position: 'relative' }}>
+
+            {(this.state.markers.length > 0) && this.state.markers.map((item) => (
+              <Marker
+                key={item.id}
+                name={'Dolores park'}
+                position={{ lat: item.latitude, lng: item.longitude }}
+                onClick={this.onMarkerClick} />
+            ))}
+
+            <InfoWindow marker={this.state.activeMarker}
+              visible={this.state.showingInfoWindow}>
+              <div>
+                {/* <h1>{this.state.selectedPlace.name}</h1> */}
+                <h1>Hello</h1>
+              </div>
+            </InfoWindow>
+          </Map>
+        </div>
+      )
+    }
+  }
+
+  export default GoogleApiWrapper({
+    apiKey: (process.env.REACT_APP_GOOGLE_API_KEY)
+}) (GoogleMap)

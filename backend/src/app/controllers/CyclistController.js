@@ -10,7 +10,7 @@ class CyclistController {
       const bikes = await Bike.findAll()
       return res.json(bikes)
     } catch (err) {
-      return res.status(401).json({ message: 'Unable to load bikes list' })
+      return res.status(401).json({ message: `Unable to load bikes list with error: ${err}` })
     }
   }
 

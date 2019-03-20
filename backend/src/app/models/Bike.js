@@ -9,7 +9,9 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
     },
     user_id: DataTypes.INTEGER,
-    status: DataTypes.STRING
+    status: DataTypes.STRING,
+    latitude: DataTypes.STRING,
+    longitude: DataTypes.STRING
   })
   return Bike
 }

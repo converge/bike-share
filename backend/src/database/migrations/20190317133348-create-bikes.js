@@ -26,6 +26,14 @@ module.exports = {
         allowNull: false,
         defaultValue: 'available',
       },
+      latitude: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      longitude: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
       created_at: {
         type: Sequelize.DATE,
         allowNull: false
