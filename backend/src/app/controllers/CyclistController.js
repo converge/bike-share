@@ -1,11 +1,12 @@
 const { Bike } = require('../models')
+const { User } = require('../models')
 
 class CyclistController {
 
   /*
    * List all bikes
    */
-  async listBikes (req, res) {
+  async listBikes(req, res) {
     try {
       const bikes = await Bike.findAll()
       return res.json(bikes)
@@ -15,43 +16,84 @@ class CyclistController {
   }
 
   /*
-   * Rent a bike
+   * Rent or Return bike
+   * userId should be provided for renting and should be
+   * null to return the bike and make it available again
    * params: userId, bikeId
    */
-  async rentBike (req, res) {
-    const { userId, bikeId} = req.body
+  async updateBikeStatus(req, res) {
+    const { userId, bikeId } = req.body.params
+
+    // check if there is already a rent bike for this use
+    if (userId !== null) {
+      try {
+        const bike = await Bike.count({
+          where: {
+            user_id: userId,
+          }
+        })
+        // if there is already a related bike to this user
+        if (bike > 0) {
+          return res.status(422).json({ message: 'There is already a bike in use for this user' })
+        }
+      } catch (err) {
+        return res.json({ message: err })
+      }
+    }
+    let status
+    // set status based on userId
+    (userId !== null) ? status = 'in_use' : status = 'available'
     try {
-      const bikeToRent = await Bike.update({
-        status: 'in_use',
+      const bike = await Bike.update({
+        status: status,
         user_id: userId
       }, {
-        where: { id: bikeId }
-      })
-      return res.json(bikeToRent)
+          where: { id: bikeId }
+        })
+      return res.json(bike)
     } catch (err) {
       return res.json({ message: err })
     }
   }
 
   /*
-   * Return a bike and set as available again
-   * params: userId, bikeId
+   * Return information about the username (username, lease status)
+   * params: userId
    */
-  async returnBike (req, res) {
-    const { userId, bikeId } = req.body
+  async userStatus(req, res) {
+    const { userId } = req.query
     try {
-      const bikeToReturn = await Bike.update({
-        id: bikeId,
-        user_id: null,
-        status: 'available',
-      }, {
-        where: { user_id: userId }
+      const userStatus = await Bike.findOne({
+        attributes: ['status'],
+        where: {
+          user_id: userId
+        }
       })
-      return res.json(bikeToReturn)
+      return res.json(userStatus)
+    } catch (err) {
+      return res.json({ message: err })
+    }
+  }
+
+  /*
+   * Get information from a particular bike
+   * params: bikeId
+   */
+  async bikeInfo(req, res) {
+    const { bikeId } = req.query
+    try {
+      const bike = await Bike.findOne({
+        attributes: ['id', 'name', 'status'],
+        where: {
+          id: bikeId
+        }
+      })
+      return res.json(bike)
     } catch (err) {
       return res.json({ message: err })
     }
   }
 }
+
 
 module.exports = new CyclistController()
