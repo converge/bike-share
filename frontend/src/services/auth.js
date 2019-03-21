@@ -20,3 +20,15 @@ export const getUserId = () => {
   }
   return false
 }
+export const getUsername = () => {
+  const token = sessionStorage.getItem(TOKEN_KEY)
+  if (token !== null) {
+    try {
+      const payload = (JSON.parse(atob(token.split('.')[1])))
+      return payload.username
+    } catch (e) {
+      return false
+    }
+  }
+  return false
+}

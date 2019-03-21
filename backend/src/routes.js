@@ -11,7 +11,8 @@ routes.get('/admin/list_bikes', AdminController.listBikes)
 
 // // Cyclist routes
 routes.get('/cyclist/list_bikes', CyclistController.listBikes)
-routes.put('/cyclist/rent_bike', CyclistController.rentBike)
-routes.put('/cyclist/return_bike', CyclistController.returnBike)
+routes.get('/cyclist/bike_info', CyclistController.bikeInfo)
+routes.get('/cyclist/user_status', CyclistController.userStatus)
+routes.put('/cyclist/update_bike_status', CyclistController.updateBikeStatus)
 
 module.exports = routes

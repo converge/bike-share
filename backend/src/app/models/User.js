@@ -1,5 +1,6 @@
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
+const Bike = require('./Bike')
 
 /*
  * User Model
@@ -30,7 +31,7 @@ module.exports = (sequelize, DataTypes) => {
 
   // generate JSON Web Token
   User.prototype.generateToken = function () {
-    return jwt.sign({ id: this.id }, process.env.APP_SECRET)
+    return jwt.sign({ id: this.id, username: this.username }, process.env.APP_SECRET)
   }
 
   return User

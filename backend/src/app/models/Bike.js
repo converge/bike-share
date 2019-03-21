@@ -8,10 +8,22 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       primaryKey: true,
     },
-    user_id: DataTypes.INTEGER,
+    // explicit declaration of the FK
+    user_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: sequelize.models.User,
+        key: 'id'
+      }
+    },
     status: DataTypes.STRING,
     latitude: DataTypes.STRING,
     longitude: DataTypes.STRING
   })
+  // create ForeignKey constraint
+  Bike.associate = (models) => {
+    Bike.belongsTo(models.User, { foreignKey: 'user_id', onDelete: 'cascade' })
+  }
+
   return Bike
 }

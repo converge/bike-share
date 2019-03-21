@@ -41,19 +41,21 @@
   padding-top: 10px;
 }
 
-.field-validation , .form-sending.error {
+.field-validation , .form-sending.error, .form-sending.success {
   margin-top: 20px;
   color: #FFF2AF;
 }
+
+.form-sending.success {
+  color: #fff;
+}
+
 
 /*
  * Responsive
  * tablet and mobile landscape
  */
  @media (min-width: 640px) {
-  .login-container {
-  }
-
   .login-wrapper {
     display: grid;
     background-color: #f1f1f1;

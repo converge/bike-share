@@ -22,6 +22,7 @@ class Login extends Component {
                     pincode: '',
                   }}
 
+                  // validation fields
                   validate={values => {
                     let errors = {}
                     if (!values.username) {

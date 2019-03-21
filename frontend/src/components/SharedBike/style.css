@@ -1,5 +1,4 @@
 
-
 .rent-container {
   display: grid;
   grid-template-columns: 1fr;
@@ -78,6 +77,26 @@
   transform: translateY(-3px);
 }
 
+.bikerent-window {
+  width: 100%;
+}
+
+.bikerent-window h1 {
+  font-size: 1.6rem;
+}
+
+.bikerent-window ul {
+  margin-top: 25px;
+}
+
+.bikerent-window p {
+  color: #EE2D3E;
+  margin: 10px;
+}
+
+.bikerent-window button {
+  margin-top: 5px;
+}
 
 
 /*
@@ -150,7 +169,6 @@
     margin-right: 40px;
     background: none;
   }
-    
 }
 
 /*

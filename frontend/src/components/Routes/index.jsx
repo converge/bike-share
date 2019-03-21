@@ -4,6 +4,7 @@ import SharedBike from '../SharedBike'
 import Login from '../Login'
 import { isAuthenticated } from "../../services/auth"
 
+// check if user is logged in, if not, redirect to login page
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
     {...rest}
