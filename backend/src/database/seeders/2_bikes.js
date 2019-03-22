@@ -19,9 +19,9 @@ module.exports = {
         name: bikeNames[i],
         status: 'available',
         // generate random location making sure they're close
-        // 46.903154, 6.780708
-        latitude: (Math.random() * (46.903000 - 46.903900) + 46.903900).toFixed(6),
-        longitude: (Math.random() * (6.780708 - 6.781708) + 6.781708).toFixed(6),
+        // 50.119571, 8.637512
+        latitude: (Math.random() * (50.110571 - 50.119571) + 50.119571).toFixed(6),
+        longitude: (Math.random() * (8.628512 - 8.637512) + 8.637512).toFixed(6),
         created_at: faker.date.past(),
         updated_at: faker.date.past()
       })

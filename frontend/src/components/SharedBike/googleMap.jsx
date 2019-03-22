@@ -17,6 +17,7 @@ export class GoogleMap extends Component {
     activeBikeName: '',
     activeBikeId: '',
     activeBikeStatus: '',
+    rentedBikeId: '',
     warningMsg: ''
   }
 
@@ -29,6 +30,10 @@ export class GoogleMap extends Component {
       // based on current bike status
       response.data.map((item) => {
         if (item.status === 'in_use' && item.user_id === getUserId()) {
+          // set rented bike id for later validation
+          this.setState({
+            rentedBikeId: item.id
+          })
           item['iconURL'] = PinMyBike
         } else if (item.status === 'in_use') {
           item['iconURL'] = PinInactive
@@ -43,7 +48,7 @@ export class GoogleMap extends Component {
     }
   }
 
-  onMarkerClick = async (props, marker, e) => {
+  onMarkerClick = async (props, marker, e) => {    
     // set current Pin Mark and load modal window
     this.setState({
       activeMarker: marker,
@@ -67,12 +72,21 @@ export class GoogleMap extends Component {
   }
 
   handleBikeRent = async (marker) => {
+    // userId equal null means we're going to return the bike
     let userId = null
     let iconURL = PinActive
-    // in case the bike is available, we set userId and the green Pin Mark
+
+    // userId different than null means we're renting a new bike
     if (this.state.activeBikeStatus === 'available') {
       userId = getUserId()
       iconURL = PinMyBike
+    }
+    // validation
+    if (userId === null && this.state.rentedBikeId !== this.state.activeBikeId) {
+      this.setState({
+        warningMsg: `Unable to return a bike you didn't rent.`
+      })
+      return
     }
 
     try {
@@ -94,9 +108,14 @@ export class GoogleMap extends Component {
         // update Pin Mark state
         this.setState({
           markers: markers,
-          showingInfoWindow: false
+          showingInfoWindow: false,
+          rentedBikeId: this.state.activeBikeId
         })
       }
+      // userId equal null means we're going to return the bike
+      // userId different than null means we're renting a new bike
+      (userId === null) ? this.props.setUserFreeToRent() : this.props.setUserAsBikeInUse()
+
     } catch (err) {
       // we're validating the renting process in the backend, if it fails,
       // we're catching it here and informing the user
@@ -120,8 +139,8 @@ export class GoogleMap extends Component {
       <div>
         {/* Instantiate Google Maps */}
         <Map google={this.props.google}
-          zoom={18}
-          center={{ lat: 46.903480, lng: 6.781185 }}
+          zoom={16}
+          center={{ lat: 50.115286, lng: 8.631349 }}
           style={{ width: '100%', height: '100%', position: 'relative' }}>
 
           {/* Iterate over bikes available and create a Pin Mark on map */}

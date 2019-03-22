@@ -6,7 +6,6 @@
 }
 
 .rent-wrapper {
-  grid-template-rows: 1fr 1fr 1fr;
 }
 
 .info-box {
@@ -28,19 +27,21 @@
   height: 48px;
   color: #fff;
   display: grid;
-  grid-template-columns: 1fr 1fr;
   justify-items: start;
   padding-left: 10px;
   align-content: center;
-  font-size: 0.75rem;
+  font-size: 0.8rem;
 }
 
 .user-info li {
   display: inline;
 }
 
+.info-b {
+  margin-top: 5px;
+}
+
 .map-share {
-  grid-column: 2;
 }
 
 .gmap-instance {
@@ -96,6 +97,8 @@
 
 .bikerent-window button {
   margin-top: 5px;
+  width: 150px;
+  height: 40px;
 }
 
 
@@ -103,8 +106,20 @@
  * Responsive
  * tablet and mobile landscape
  */
+ @media (min-width: 414px) {
+   .user-info {
+    grid-template-columns: 1fr 1fr;
+    font-size: 0.9rem;
+   }
+   .info-b {
+    margin-top: 0px;
+   }
+ }
  @media (min-width: 640px) {
-  
+  .bikerent-window button {
+    width: 232px;
+    height: 54px;
+  }
 }
 
 /*
@@ -150,6 +165,7 @@
     grid-template-columns: 1fr;
     grid-gap: 10px;
     height: 100%;
+    font-size: 1rem;
   }
 
   .map-share {

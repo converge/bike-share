@@ -1,10 +1,10 @@
 .login-container {
   display: grid;
-  grid-template-columns: 1fr minmax(414px, 1111px) 1fr;
+  grid-template-columns: 1fr;
 }
 
 .login-wrapper {
-  grid-column: 2;
+  grid-column: 1;
   height: 100vh;
   grid-template-rows: auto 50vh;
   background-color: #EE2D3E;
@@ -12,8 +12,13 @@
 
 .logo-box {
   grid-row-start: 1;
-  padding-top: 30px;
-  padding-bottom: 30px;
+  /* padding-top: 30px; */
+  /* padding-bottom: 30px; */
+  background-color: #fff;
+
+}
+
+.logo {
   height: 300px;
   background: url('../../imgs/node_bike-logo.png');
   background-color: #fff;
@@ -24,17 +29,27 @@
 .login-box {
   grid-row-start: 2;
   margin-top: 50px;
+  display: grid;
+  justify-content: center;
 }
 
 /*
  * Form
  */
+
+ .login-form {
+  align-items: center;
+ }
 .login-form input {
   color: #fff;
   border: 0;
   outline: 0;
   background: transparent;
   border-bottom: 1px solid #fff;
+}
+.form-item {
+  display: grid;
+  justify-content: center;
 }
 
 .form-sending {
@@ -56,11 +71,15 @@
  * tablet and mobile landscape
  */
  @media (min-width: 640px) {
+   .login-container {
+    grid-template-columns: 1fr minmax(375px, 1111px) 1fr;
+   }
   .login-wrapper {
     display: grid;
     background-color: #f1f1f1;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto;
+    grid-column: 2;
 
   }
   .logo-box {
@@ -69,11 +88,15 @@
     height: 500px;
     padding: 40px;
     margin-top: 40px;
+    display: grid;
+  }
+  .logo {
+    height: 80%;
     background: url('../../imgs/node_bike-logo-big.png');
-    background-size: 30vw;
-    background-color: #fff;
+    background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
+    align-self: center;
   }
   .login-box {
     grid-row-start: 1;
@@ -85,6 +108,7 @@
     margin-top: 40px;
     align-content: center;
     display: grid;
+    justify-content: center;
   }
 
   .login-form {

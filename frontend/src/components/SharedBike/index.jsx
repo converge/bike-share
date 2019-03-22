@@ -5,6 +5,9 @@ import { getUserId, getUsername } from '../../services/auth'
 import { logout } from '../../services/auth'
 import './style.css'
 
+const BIKE_IN_USE = `Bike In Use !`
+const FREE_TO_RENT = `You're free to rent !`
+
 class SharedBike extends Component {
 
   state = {
@@ -24,12 +27,12 @@ class SharedBike extends Component {
     // if there is no bike in use by the user at the moment
     if (userStatus.status === 200 && userStatus.data !== null) {
       this.setState({
-        status: userStatus.data.status
+        status: BIKE_IN_USE
       })
     } else {
-      // set bike as Bike in use
+      // set user as free to rent
       this.setState({
-        status: `You're free to rent !`
+        status: FREE_TO_RENT
       })
     }
   }
@@ -41,14 +44,19 @@ class SharedBike extends Component {
     this.props.history.push("/auth/login")
   }
 
+  setUserFreeToRent = () => {
+    this.setState({
+      status: FREE_TO_RENT
+    })
+  }
+
+  setUserAsBikeInUse = () => {
+    this.setState({
+      status: BIKE_IN_USE
+    })
+  }
+
   render() {
-    // more detailed information to the user
-    let status = ''
-    if (this.state.status === 'available') {
-      status = 'Free to rent'
-    } else if (this.state.status === 'in_use') {
-      status = 'Using a bike'
-    }
     return (
       <div className="rent-container">
         <div className="rent-wrapper">
@@ -62,7 +70,7 @@ class SharedBike extends Component {
           </div>
 
           <div className="map-share">
-            <GoogleMap />
+            <GoogleMap setUserFreeToRent={this.setUserFreeToRent} setUserAsBikeInUse={this.setUserAsBikeInUse} />
           </div>
           <div className="bottom-links">
             <button onClick={this.handleLogout}>Logout</button>
