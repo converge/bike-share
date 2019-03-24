@@ -1,8 +1,7 @@
 'use strict';
 const faker = require('faker')
 const { User } = require('../../app/models')
-// TODO: hardcore credentials for development only
-const adminUserName = 'admin'
+// hardcode password for development only
 const defaultPassword = 'test#123'
 
 module.exports = {
@@ -11,17 +10,8 @@ module.exports = {
    */
   up: (queryInterface, Sequelize) => {
     let users = []
-    // create admin
-    users.push({
-      id: 1,
-      username: adminUserName,
-      pincode: defaultPassword,
-      created_at: faker.date.past(),
-      updated_at: faker.date.past()
-    })
-
     // create random users
-    for (let i = 2; i < 5; i++) {
+    for (let i = 1; i < 5; i++) {
       users.push({
         id: i,
         username: faker.internet.userName(),

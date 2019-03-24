@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/converge/bike-share/master/frontend/src/imgs/node_bike-logo.png?token=AALg_83sTrJa32HgOVHTt75Xg8Ax5ZC_ks5cluLpwA%3D%3D">
+  <img src="https://github.com/converge/bike-share/blob/master/frontend/src/imgs/node_bike-logo.png">
 </p>
 
 ### Install
@@ -10,7 +10,7 @@
 
 #### Create Database (migration)
 
-2. ```npx sequelize db:migrate:undo:all ; npx sequelize db:migrate```
+2. ```mkdir db ; touch db/node_sqlite.sqlite ; npx sequelize db:migrate```
 
 #### Populate Database
 3. ```npx sequelize db:seed:undo:all ; npx sequelize db:seed:all```

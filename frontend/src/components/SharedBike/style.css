@@ -8,6 +8,7 @@
 .rent-wrapper {
   display: grid;
   align-content: space-between;
+  grid-template-rows: 208px 1fr;
 }
 
 .info-box {
@@ -43,9 +44,8 @@
   margin-top: 5px;
 }
 
-.gmap-instance {
-  width: 100%;
-  height: 100%;
+.map-share {
+  position: relative;
 }
 
 .bottom-links {
