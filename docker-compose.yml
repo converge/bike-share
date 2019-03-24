@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+  # Backend
+  backend:
+    container_name: bike_share-backend
+    build: ./backend
+    expose:
+      - 3001
+    environment:
+      API_HOST: localhost
+      API_SERVER_PORT: 3001
+    ports:
+      - 3001:3001
+    volumes:
+      - ./backend:/app/backend
+      - /app/backend/node_modules
+      - ./backend/db:/app/backend/db:rw
+
+  # Frontend
+  frontend:
+    container_name: bike_share-frontend
+    build: ./frontend
+    environment:
+      - REACT_APP_PORT=3000
+    expose:
+      - 3000
+    ports:
+      - 3000:3000
+    volumes:
+      - ./frontend:/app/frontend
+    links:
+      - backend
+    command: npm start
+

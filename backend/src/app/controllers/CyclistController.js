@@ -61,7 +61,9 @@ class CyclistController {
    * params: userId
    */
   async userStatus(req, res) {
-    const { userId } = req.query
+    // const { userId } = req.query
+    const { userId } = req.body
+    // console.log(req)
     try {
       const userStatus = await Bike.findOne({
         attributes: ['status'],

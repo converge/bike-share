@@ -25,6 +25,6 @@
     "express": "^4.16.4",
     "jsonwebtoken": "^8.5.0",
     "sequelize": "^5.1.0",
-    "sqlite": "^3.0.2"
+    "sqlite3": "^4.0.6"
   }
 }

@@ -8,22 +8,24 @@ class AuthController {
    */
   async login (req, res) {
     const { username, pincode } = req.body
-
-    const user = await User.findOne({ where: {
-      username
-    }})
-
-    if (!user) {
-      return res.status(401).json({ message: 'Invalid user!' })
+    try {
+      const user = await User.findOne({ where: {
+        username
+      }})
+      if (!user) {
+        return res.status(401).json({ message: 'Invalid user!' })
+      }
+  
+      if (!await user.checkPincode(pincode)) {
+        return res.status(401).json({ message: 'The pincode is incorrect!'})
+      }
+      return res.json({
+        user,
+        token: user.generateToken()
+      })
+    } catch (err) {
+      res.json({ message: err })
     }
-
-    if (!await user.checkPincode(pincode)) {
-      return res.status(401).json({ message: 'The pincode is incorrect!'})
-    }
-    return res.json({
-      user,
-      token: user.generateToken()
-    })
   }
 }
 

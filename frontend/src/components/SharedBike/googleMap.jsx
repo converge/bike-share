@@ -28,7 +28,7 @@ export class GoogleMap extends Component {
     if (response.status === 200) {
       // set initial icon (Pin Mark) to be displayed
       // based on current bike status
-      response.data.map((item) => {
+      response.data.forEach((item) => {
         if (item.status === 'in_use' && item.user_id === getUserId()) {
           // set rented bike id for later validation
           this.setState({
@@ -48,7 +48,7 @@ export class GoogleMap extends Component {
     }
   }
 
-  onMarkerClick = async (props, marker, e) => {    
+  onMarkerClick = async (props, marker, e) => {
     // set current Pin Mark and load modal window
     this.setState({
       activeMarker: marker,
@@ -144,14 +144,14 @@ export class GoogleMap extends Component {
           style={{ width: '100%', height: '100%', position: 'relative' }}>
 
           {/* Iterate over bikes available and create a Pin Mark on map */}
-          {(this.state.markers.length > 0) && this.state.markers.map((item) => (
+          {this.state.markers.length > 0 && (this.state.markers.map((item) => (
             <Marker
               key={item.id}
               id={item.id}
               position={{ lat: item.latitude, lng: item.longitude }}
               icon={{ url: item.iconURL }}
               onClick={this.onMarkerClick} />
-          ))}
+          )))}
 
           {/* Modal window to display bike information */}
           <InfoWindowEx marker={this.state.activeMarker}
