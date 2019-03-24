@@ -1,4 +1,6 @@
-Node Bike (bike share)
+<p align="center">
+  <img src="https://raw.githubusercontent.com/converge/bike-share/master/frontend/src/imgs/node_bike-logo.png?token=AALg_83sTrJa32HgOVHTt75Xg8Ax5ZC_ks5cluLpwA%3D%3D">
+</p>
 
 ### Install
 
