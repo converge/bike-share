@@ -9,28 +9,23 @@ describe('API integration tests', () => {
     await truncate()
   })
 
-  it('should list all bikes (without authentication)', async () => {
-    const response = await request(app).get('/cyclist/list_bikes')
-    expect(response.status).toBe(200)
+  it('should not list all bikes (without authentication)', async () => {
+    const response = await request(app).get('/cyclist/list_bikes').send({})
+    expect(response.status).toBe(401)
   })
 
-  it('should mark a bike as returned(available again) (without authentication)', async () => {
+  it('should not mark a bike as returned(available again) (without authentication)', async () => {
     const response = await request(app).put('/cyclist/update_bike_status').send({
       params: {
         userId: null,
         bikeId: 1
       }
     })
-    expect(response.status).toBe(200)
+    expect(response.status).toBe(401)
   })
 
-  it('(admin) should list all bikes', async () => {
-    const response = await request(app).get('/admin/list_bikes')
-    expect(response.status).toBe(200)
-  })
-
-  it('should return user status', async () => {
+  it('should not return user status (without authentication)', async () => {
     const response = await request(app).get('/cyclist/user_status')
-    expect(response.status).toBe(200)
+    expect(response.status).toBe(401)
   })
 })
