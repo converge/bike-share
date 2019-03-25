@@ -4,17 +4,33 @@
 
 ### Install
 
-#### Initiate Node Server, React App 
+#### Clone
 
-1. ```docker-compose -f docker-compose.yml up```
+1. git clone https://github.com/converge/bike-share
+
+#### Set Google Maps API KEY
+
+2. You can set the Google Maps API KEY in the ./frontend/.env file
+
+#### Instal backend dependencies
+
+3. ```cd backend ; npm install```
 
 #### Create Database (migration)
 
-2. ```mkdir db ; touch db/node_sqlite.sqlite ; npx sequelize db:migrate```
+4. ```mkdir db ; touch db/node_sqlite.sqlite ; npx sequelize db:migrate```
 
 #### Populate Database
-3. ```npx sequelize db:seed:undo:all ; npx sequelize db:seed:all```
+5. ```npx sequelize db:seed:undo:all ; npx sequelize db:seed:all```
+
+#### List available usernames to login
+
+6. load SQLite database ```sqlite3 db/node_bike.sqlite``` and show the users: ```SELECT username FROM users;```
+
+#### Initiate Node Server, React App 
+
+7. ```cd .. ; docker-compose -f docker-compose.yml up```
 
 #### Load it
 
-4. http://localhost:3000
+8. http://localhost:3000
