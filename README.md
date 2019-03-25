@@ -18,7 +18,7 @@
 
 #### Create Database (migration)
 
-4. ```mkdir db ; touch db/node_sqlite.sqlite ; npx sequelize db:migrate```
+4. ```mkdir db ; touch db/node_bike.sqlite ; npx sequelize db:migrate```
 
 #### Populate Database
 5. ```npx sequelize db:seed:undo:all ; npx sequelize db:seed:all```
