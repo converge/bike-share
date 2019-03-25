@@ -27,6 +27,8 @@
 
 6. load SQLite database ```sqlite3 db/node_bike.sqlite``` and show the users: ```SELECT username FROM users;```
 
+_*all passwords are: test#123_
+
 #### Initiate Node Server, React App 
 
 7. ```cd .. ; docker-compose -f docker-compose.yml up```
